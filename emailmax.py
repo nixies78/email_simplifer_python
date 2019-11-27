@@ -24,6 +24,7 @@ def print_running_applications():
 	for i in appwindows:
 		print(i)
 
+
 def select_subject_line():
 #pyautogui.locateOnScreen('submit.png')
     subject_line_cood = pyautogui.locateCenterOnScreen('C:\\Ed Programmes\\Phyton\\images\\SubjectLineOutlook.png')
@@ -71,7 +72,7 @@ class MyFrame(wx.Frame):
         my_btn = wx.Button(panel, label='Email Max')
         #Bind the button to a event to fire when pushed
 
-        my_btn.Bind(wx.EVT_BUTTON, self.on_press)
+        my_btn.Bind(wx.EVT_BUTTON, self.on_press(email="Max@courthouseClinics.com",name="Max"))
         #Add the button box to the widget
         #my_sizer.Add(my_btn, 0, wx.ALL | wx.CENTER, 5)
         top_buttons_box.AddSpacer(30)
@@ -80,7 +81,7 @@ class MyFrame(wx.Frame):
         #Creates button (Email Flavio)  
         my_btnFlavio = wx.Button(panel, label='Email Flavio') 
         #Bind the button to a event to fire when pushed
-        my_btnFlavio.Bind(wx.EVT_BUTTON, self.on_press_Flavio(email="flaviom@example.co.uk",name="Flavio"))
+        my_btnFlavio.Bind(wx.EVT_BUTTON, self.on_press_Flavio)
         #Add the button box to the widget
         #my_sizer.Add(my_btnFlavio, 0, wx.ALL | wx.CENTER, 5)
         top_buttons_box.Add(my_btnFlavio, 0, wx.ALL | wx.CENTER, 5)
@@ -94,9 +95,9 @@ class MyFrame(wx.Frame):
         move_to_application()
 
 
-    def on_press(self, event):
+    def on_press(self, event, email,name):
         value = self.text_ctrl.GetValue()
-        send_email("Max", "max@CourtHouseClinics.com", value)
+        send_email(name, email, value)
     
 
 
@@ -109,7 +110,7 @@ class MyFrame(wx.Frame):
     def on_press_Flavio(self, event, email, name):
         value = self.text_ctrl.GetValue()
         send_email("Flavio","flaviom@ABCLasers.co.uk",value)
-    	
+    
 
 if __name__ == '__main__':
     app = wx.App()
